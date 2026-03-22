@@ -19,6 +19,12 @@
   padding: 0;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
 body {
   font-family: var(--font-sans);
   background: linear-gradient(-45deg, #ffffff, #fff5f8, #fcf8fa, #ffffff);
@@ -518,8 +524,19 @@ button {
   text-align: center;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness & Performance */
 @media (max-width: 768px) {
+  /* Performance fixes for smooth scrolling on Android/iOS */
+  body {
+    animation: none; /* Disable expensive background repaint on mobile */
+    background: #fff5f8; /* Set solid fallback */
+  }
+  .glass-card, .story-row, .glass-nav, .modal {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--bg-dark); /* Solid background instead of blurry glass to save GPU rendering */
+  }
+
   .glass-nav { 
     padding: 1rem; 
     flex-direction: column;
@@ -535,11 +552,15 @@ button {
   .cursor-glow { display: none; }
   .section { 
     padding: 6rem 1rem 3rem; /* Reduced padding for more screen space */
+    overflow-x: hidden; /* Prevent stickers from pushing layout */
   }
-  .glass-card {
+  .glass-card, .story-row {
     padding: 1.5rem; /* Reduced inner padding */
   }
   .hero {
     padding-top: 10rem; /* Make room for stacked nav */
+  }
+  .cards-grid {
+    grid-template-columns: 1fr; /* Force single column on vertical 9:16 phones */
   }
 }
