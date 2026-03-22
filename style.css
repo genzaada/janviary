@@ -241,40 +241,6 @@ button {
   bottom: -20%; left: -10%;
 }
 
-/* Infinite Scrolling Marquee Banner */
-.marquee-wrapper {
-  overflow: hidden;
-  position: relative;
-  background: var(--text-primary);
-  color: var(--bg-darker);
-  padding: 1.5rem 0;
-  border-top: 2px dashed var(--accent-secondary);
-  border-bottom: 2px dashed var(--accent-secondary);
-  transform: rotate(-2deg) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  z-index: 10;
-  margin: 4rem 0;
-}
-
-.marquee-track {
-  display: flex;
-  white-space: nowrap;
-  animation: scrollMarquee 20s linear infinite;
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.marquee-track span {
-  padding: 0 2rem;
-}
-
-@keyframes scrollMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.33%); }
-}
-
 /* Floating Poor Girl */
 .floating-beggar {
   position: fixed;
