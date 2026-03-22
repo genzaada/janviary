@@ -241,6 +241,40 @@ button {
   bottom: -20%; left: -10%;
 }
 
+/* Infinite Scrolling Marquee Banner */
+.marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  background: var(--text-primary);
+  color: var(--bg-darker);
+  padding: 1.5rem 0;
+  border-top: 2px dashed var(--accent-secondary);
+  border-bottom: 2px dashed var(--accent-secondary);
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  z-index: 10;
+  margin: 4rem 0;
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: scrollMarquee 20s linear infinite;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.marquee-track span {
+  padding: 0 2rem;
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
 /* Floating Poor Girl */
 .floating-beggar {
   position: fixed;
@@ -360,11 +394,35 @@ button {
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Forces a cleaner 3x2 grid on large screens */
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(300px, auto);
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Bento Box Grid Asymmetry */
+.bento-grid .bento-wide {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 2rem;
+}
+
+.bento-grid .bento-wide .card-img {
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.bento-grid .bento-wide h3, 
+.bento-grid .bento-wide p {
+  text-align: left;
+}
+
+.bento-grid .bento-tall {
+  grid-row: span 2;
 }
 
 .card-img {
@@ -561,6 +619,21 @@ button {
     padding-top: 10rem; /* Make room for stacked nav */
   }
   .cards-grid {
-    grid-template-columns: 1fr; /* Force single column on vertical 9:16 phones */
+    grid-template-columns: 1fr !important; /* Force single column on vertical 9:16 phones */
+  }
+  .bento-grid .bento-wide, .bento-grid .bento-tall {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .bento-grid .bento-wide .card-img {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  .bento-grid .bento-wide h3, 
+  .bento-grid .bento-wide p {
+    text-align: center;
   }
 }
